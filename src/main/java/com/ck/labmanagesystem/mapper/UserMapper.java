@@ -5,9 +5,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ck.labmanagesystem.entity.User;
 import com.ck.labmanagesystem.dto.UserQueryDTO;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+@Mapper
 public interface UserMapper extends BaseMapper<User> {
 
     IPage<User> selectUserPage(Page<User> page, @Param("query") UserQueryDTO queryDTO);

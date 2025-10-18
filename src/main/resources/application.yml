@@ -5,7 +5,7 @@ spring:
   application:
     name: lab-manage-system
   datasource:
-    url: jdbc:mysql://localhost:3306/lab_manage_system?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://localhost:3306/lab_manage_system?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -28,25 +28,13 @@ mybatis-plus:
   type-aliases-package: com.ck.labmanagesystem.entity
   configuration:
     map-underscore-to-camel-case: true
-    cache-enabled: false
-  global-config:
-    db-config:
-      id-type: auto
-      logic-delete-value: 0
-      logic-not-delete-value: 1
 
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
-    tags-sorter: alpha
-    operations-sorter: alpha
   api-docs:
     path: /v3/api-docs
-  group-configs:
-    - group: 'default'
-      paths-to-match: '/api/**'
 
 logging:
   level:
-    com.ck.labmanagesystem.mapper: debug
-    org.springframework: info
+    com.ck.labmanagesystem: debug

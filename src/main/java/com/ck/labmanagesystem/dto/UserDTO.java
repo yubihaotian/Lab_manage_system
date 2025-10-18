@@ -26,7 +26,7 @@ public class UserDTO {
     @Schema(description = "电话", example = "13800138000")
     private String phone;
 
-    @Schema(description = "用户类型", example = "student", allowableValues = {"admin", "teacher", "student"})
+    @Schema(description = "用户类型", example = "学生", allowableValues = {"管理员", "教师", "学生"})
     @NotNull(message = "用户类型不能为空")
     private String userType;
 

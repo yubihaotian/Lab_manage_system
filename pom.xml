@@ -95,6 +95,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- BCrypt (密码加密) -->
+        <dependency>
+            <groupId>at.favre.lib</groupId>
+            <artifactId>bcrypt</artifactId>
+            <version>0.10.2</version>
+        </dependency>
+
         <!-- Swagger / SpringDoc OpenAPI (替代旧版SpringFox) -->
         <dependency>
             <groupId>org.springdoc</groupId>

@@ -1,7 +1,5 @@
-// src/main/java/com/ck/labmanagesystem/service/impl/UserServiceImpl.java
 package com.ck.labmanagesystem.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -12,6 +10,8 @@ import com.ck.labmanagesystem.mapper.UserMapper;
 import com.ck.labmanagesystem.service.IUserService;
 import com.ck.labmanagesystem.vo.PageVO;
 import org.springframework.beans.BeanUtils;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
@@ -20,11 +20,7 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
 
     @Override
     public boolean createUser(UserDTO userDTO) {
-        // 检查用户名是否已存在
-        if (getUserByUsername(userDTO.getUsername()) != null) {
-            throw new RuntimeException("用户名已存在");
-        }
-
+        // 不要在这里捕获异常，让异常传递给全局异常处理器
         User user = new User();
         BeanUtils.copyProperties(userDTO, user);
 
@@ -37,15 +33,10 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
 
     @Override
     public boolean updateUser(UserDTO userDTO) {
+        // 不要在这里捕获异常
         User user = this.getById(userDTO.getUserId());
         if (user == null) {
             throw new RuntimeException("用户不存在");
-        }
-
-        // 检查用户名是否被其他用户使用
-        User existingUser = getUserByUsername(userDTO.getUsername());
-        if (existingUser != null && !existingUser.getUserId().equals(userDTO.getUserId())) {
-            throw new RuntimeException("用户名已被其他用户使用");
         }
 
         BeanUtils.copyProperties(userDTO, user);
